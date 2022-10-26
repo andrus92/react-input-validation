@@ -35,7 +35,6 @@ class App extends React.Component {
         } else {
           this.setState({isPasswordValid: false});
         }
-        
         break;
       case 'firstName':
         this.setState({isFirstNameValid: this.nameRegex.test(value)});
@@ -50,7 +49,6 @@ class App extends React.Component {
   }
 
   handleChange = (event) => {
-    console.log('handleChange: ' + event.target.id)
     this.setState({[event.target.id]: event.target.value});
     this.validate(event.target.id, event.target.value);
     /*

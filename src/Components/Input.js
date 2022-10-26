@@ -1,5 +1,8 @@
 import React from "react";
 import '../styles/Input.css';
+import exclamation_mark from '../img/exclaimation_mark.png';
+import tick_mark from '../img/tick_mark.png';
+
 
 const Input = (props) => {
 
@@ -7,16 +10,22 @@ const Input = (props) => {
         if (props.isValid !== undefined) {
             if (props.isValid) {
                 return (
-                    <p className='valid'>ValidText</p>
+                    <div className='info valid'>
+                        <img src={tick_mark} alt='exclamation mark'></img>
+                        ValidText
+                    </div>
                 );
             } else {
                 return (
-                    <p className='invalid'>InvalidText</p>
+                    <div className='info invalid'>
+                        <img src={exclamation_mark} alt='exclamation mark'></img>
+                        InvalidText
+                    </div>
                 );
             }
         } 
         return (
-            <p className='invisible'>Invisible</p>
+            <div className='info invisible'>Invisible</div>
         );
     }
     return (
