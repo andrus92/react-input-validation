@@ -9,11 +9,18 @@ class App extends React.Component {
       email: '',
       isEmailValid: undefined,
       password: '',
+      isPasswordValid: undefined,
       firstName: '',
+      isFirstNameValid: undefined,
       lastName: '',
+      isLastNameValid: undefined,
     };
 
-    this.emailRegex = new RegExp('^(.+)@(.+)$');
+    this.emailRegex = new RegExp('^[A-Za-z0-9+_.-]+@[A-Za-z0-9-]+[.][A-Za-z]{2,4}$');
+    // Password should contain at least on special symbol
+    this.passwordRegex = new RegExp('.*[+\?\*\^\$\%].*');
+    // Name and surname should start with capital letter
+    this.nameRegex = new RegExp('^[A-Z][a-z]+$');
   }
 
   validate = (category, value) => {
@@ -22,14 +29,22 @@ class App extends React.Component {
           this.setState({isEmailValid: this.emailRegex.test(value)});
         break;
       case 'password':
-        // code block
+        // should contain at least 8 symbols
+        if (value.length >= 8) {
+          this.setState({isPasswordValid: this.passwordRegex.test(value)});
+        } else {
+          this.setState({isPasswordValid: false});
+        }
+        
         break;
       case 'firstName':
+        this.setState({isFirstNameValid: this.nameRegex.test(value)});
+        break;
       case 'lastName':
-        // code block
+        this.setState({isLastNameValid: this.nameRegex.test(value)});
         break;
       default:
-        // code block
+        return;
     }
 
   }
@@ -63,34 +78,37 @@ class App extends React.Component {
         <form className='App__form' onSubmit={this.handleSubmit}>
           <Input
             type='text'
+            name='firstName' 
+            value={this.state.firstName}
+            handleChange={this.handleChange}
+            isValid={this.state.isFirstNameValid}
+          />
+
+          <Input
+            type='text'
+            name='lastName' 
+            value={this.state.lastName}
+            handleChange={this.handleChange}
+            isValid={this.state.isLastNameValid}
+          />
+
+          <Input
+            type='text'
             name='email' 
             value={this.state.email}
             handleChange={this.handleChange}
             isValid={this.state.isEmailValid}
           />
-{/* 
+
           <Input
             type='password'
             name='password' 
             value={this.state.password}
             handleChange={this.handleChange}
+            isValid={this.state.isPasswordValid}
           />
-
-          <Input
-            type='text'
-            name='firstName' 
-            value={this.state.firstName}
-            handleChange={this.handleChange}
-          />
-
-          <Input
-            type='password'
-            name='lastName' 
-            value={this.state.lastName}
-            handleChange={this.handleChange}
-          /> */}
-
-            <button className='btn' type='submit'>Submit</button>
+            
+          <button className='btn' type='submit'>Submit</button>
           </form>
         </div>
           

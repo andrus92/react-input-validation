@@ -1,5 +1,7 @@
 .input {
     transition: all 0.3s;
+    border: 1px solid gray;
+    border-radius: 5px;
   }
   
 .input:hover,
