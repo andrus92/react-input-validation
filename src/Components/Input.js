@@ -12,14 +12,14 @@ const Input = (props) => {
                 return (
                     <div className='info valid'>
                         <img src={tick_mark} alt='exclamation mark'></img>
-                        ValidText
+                        {props.validText}
                     </div>
                 );
             } else {
                 return (
                     <div className='info invalid'>
                         <img src={exclamation_mark} alt='exclamation mark'></img>
-                        InvalidText
+                        {props.invalidText}
                     </div>
                 );
             }
